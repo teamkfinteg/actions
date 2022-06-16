@@ -58,13 +58,13 @@ jobs:
             }
             console.log(`Commit Message: ${commitMessages}`);
 
-            core.exportVariable('COMMIT_MSG', `${commitMessages}`);
+            core.exportVariable('COMMITMESSAGES', `${commitMessages}`);
         
       - uses: Keyfactor/add-and-commit@v7.5.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: README.md --force
-          message: ${{ COMMIT_MSG }}
+          message: Replace with CommitMessages var
           author_name: Keyfactor
           author_email: keyfactor@keyfactor.github.io
