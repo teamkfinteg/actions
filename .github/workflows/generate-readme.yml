@@ -56,9 +56,9 @@ jobs:
               commitMessages = commitMessages + "\n - " + pullCommits.data[i].commit.message
               console.log(" - " + pullCommits.data[i].commit.message)
             }
-            console.log(`Commit Message: ${commitMessages}`);
+            // console.log(`Commit Message: ${commitMessages}`);
 
-            core.exportVariable('COMMITMESSAGES', `${commitMessages}`);
+            // core.exportVariable('COMMITMESSAGES', `${commitMessages}`);
         
       - uses: Keyfactor/add-and-commit@v7.5.0
         env:
