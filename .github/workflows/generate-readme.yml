@@ -12,6 +12,7 @@ jobs:
         with:
           repository: 'Keyfactor/actions'
           path: './actions/'
+          ref: 'list-pr-commits'
 
       - uses: Keyfactor/jinja2-action@v1.2.0-multiple-data-files
         with:
@@ -25,12 +26,45 @@ jobs:
           
       - name: Show generated README.md
         run: echo $(cat README.md)
+
+      - name: Check for commits in pull request
+        id: pull_request_commits
+        uses: actions/github-script@v4.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name == 'push'
+        with:
+          script: |
+            // get all closed pull requests for this repo
+            const commitMessages = ""
+            const pulls = await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });
+            const lastPull = pulls.data[0].id;
+            const lastPullTitle = pulls.data[0].title;
+            const lastPullNum = pulls.data[0].number;
+            // get all commits for the most recent closed pr
+            const pullCommits = await github.pulls.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: lastPullNum
+            });
+            // create and export the concatenated commit messages
+            for (var i = 0; i < pullCommits.data.length; i++) {
+              commitMessages = commitMessages + "\n - " + pullCommits.data[i].commit.message
+              console.log(" - " + pullCommits.data[i].commit.message)
+            }
+            console.log(`Commit Message: ${commitMessages}`);
+
+            core.exportVariable('COMMIT_MSG', `${commitMessages}`);
         
       - uses: Keyfactor/add-and-commit@v7.5.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: README.md --force
-          message: Update generated README
+          message: ${{ COMMIT_MSG }}
           author_name: Keyfactor
           author_email: keyfactor@keyfactor.github.io
