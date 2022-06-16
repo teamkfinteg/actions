@@ -53,7 +53,7 @@ jobs:
             });
             // create and export the concatenated commit messages
             for (var i = 0; i < pullCommits.data.length; i++) {
-              commitMessages = commitMessages + "\n - " + pullCommits.data[i].commit.message
+              // commitMessages = commitMessages + "\n - " + pullCommits.data[i].commit.message
               console.log(" - " + pullCommits.data[i].commit.message)
             }
             // console.log(`Commit Message: ${commitMessages}`);
