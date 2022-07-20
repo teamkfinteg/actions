@@ -37,7 +37,26 @@ In order to use the PAM Provider, the provider's configuration must be set in th
 ![](images/setting.png)
 
 ![](images/config.png)
+## Configuration Parameers
+
+| Field | Value | 
+|-----|-----|
+|Provider Type| {{ about.pam.providerType }} |
+|Name| {{ about.pam.name }} |
+|Certificate Store Container| {{ about.pam.certStoreContainer }} |
+|KV Engine Path| {{ about.pam.kvEnginePath }}|
+|Vault Token| {{about.pam.vaultToken }} |
+|Vault Host| {{ about.pam.vaultHost }} |
 
 After it is set up, you can now use your PAM Provider when configuring certificate stores. Any field that is treated as a Keyfactor secret, such as server passwords and certificate store passwords can be retrieved from your PAM Provider instead of being entered in directly as a secret.
 
 ![](images/password.png)
+## PAM Server Password 
+| Field | Value | 
+|-----|-----|
+|Secret Source| Load From PAM Provider |
+|Providers| {{ about.pam.name }} |
+|KV Secret Key| {{ about.pam.passwordProviders }} |
+|KV Secret Name| {{ about.pam.kvSecretName }}|
+|Vault Token| {{about.pam.vaultToken }} |
+|Vault Host| {{ about.pam.vaultHost }} |
