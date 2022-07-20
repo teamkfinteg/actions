@@ -10,7 +10,6 @@
 
 ---
 {% if (support_level is defined) %}
-{% include "./actions/readme-templates/readme_platform_pam.md" ignore missing %}
 
 ## Support for {{ name }}
 
