@@ -1,15 +1,16 @@
 {% include "./readme-src/readme-pre.md" ignore missing %}
 
-##### Usage
-In order to use the PAM Provider, the provider's configuration must be set in the Keyfactor Platform. In the settings menu (upper right cog) you can select the ___Priviledged Access Management___ option to configure your provider instance.
-
-![](images/setting.png)
 
 ### Initial Configuration of PAM Provider
 In order to allow Keyfactor to use the new {{ name }}, the definition needs to be added to the application database.
 This is done by running the provided [add_PAMProvider.sql](./add_PAMProvider.sql) script on the Keyfactor application database, which only needs to be done one time.
 
 If you have a hosted environment or need assistance completing this step, please contact Keyfactor Support.
+
+##### Usage
+In order to use the PAM Provider, the provider's configuration must be set in the Keyfactor Platform. In the settings menu (upper right cog) you can select the ___Priviledged Access Management___ option to configure your provider instance.
+
+![](images/setting.png)
 
 ### Configuring Parameters
 The following are the parameter names and a description of the values needed to configure the {{ name }}.
@@ -22,6 +23,7 @@ The following are the parameter names and a description of the values needed to 
 | Path | KV Engine Path | The path to secrets in the Vault | By default this would be at `{{ about.pam.kvEnginePath }}` |
 | Token | Vault Token | The access token for the Vault | {{about.pam.vaultToken }} |
 | Host | Vault Host | The IP address or URL of the Vault instance, including any port number | {{ about.pam.vaultHost }}  |
+
 ![](images/config.png)
 
 
@@ -34,6 +36,7 @@ After it is set up, you can now use your PAM Provider when configuring certifica
 | Server Provider | Providers | Drop-down selector for Server provider name | {{ about.pam.providers }} |
 | Key | KV Secret Key | The key to the key-value pair of the secret to access | {{ about.pam.secretKey }}  |
 | Secret | KV Secret Name | The name of the secret in the Vault | {{ about.pam.secretName }} |
+
 ![](images/password.png)
 
 
