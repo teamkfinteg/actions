@@ -55,8 +55,6 @@ After it is set up, you can now use your PAM Provider when configuring certifica
 | Field | Value | 
 |-----|-----|
 |Secret Source| Load From PAM Provider |
-|Providers| {{ about.pam.name }} |
-|KV Secret Key| {{ about.pam.passwordProviders }} |
-|KV Secret Name| {{ about.pam.kvSecretName }}|
-|Vault Token| {{about.pam.vaultToken }} |
-|Vault Host| {{ about.pam.vaultHost }} |
+|Providers| {{ about.pam.providers }} |
+|KV Secret Key| {{ about.pam.secretKey }} |
+|KV Secret Name| {{ about.pam.secretName }}|
