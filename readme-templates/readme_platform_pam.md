@@ -10,7 +10,7 @@ If you have a hosted environment or need assistance completing this step, please
 ##### Usage
 In order to use the PAM Provider, the provider's configuration must be set in the Keyfactor Platform. In the settings menu (upper right cog) you can select the ___Priviledged Access Management___ option to configure your provider instance.
 
-![](../actions/images/setting.png)
+![](./actions/images/setting.png)
 
 ### Configuring Parameters
 The following are the parameter names and a description of the values needed to configure the {{ name }}.
@@ -24,7 +24,7 @@ The following are the parameter names and a description of the values needed to 
 | Token | Vault Token | The access token for the Vault | {{about.pam.vaultToken }} |
 | Host | Vault Host | The IP address or URL of the Vault instance, including any port number | {{ about.pam.vaultHost }}  |
 
-![](../actions/images/config.png)
+![](./images/config.png)
 
 
 ## PAM Server Password 
@@ -37,7 +37,7 @@ After it is set up, you can now use your PAM Provider when configuring certifica
 | Key | KV Secret Key | The key to the key-value pair of the secret to access | {{ about.pam.secretKey }}  |
 | Secret | KV Secret Name | The name of the secret in the Vault | {{ about.pam.secretName }} |
 
-![](../actions/images/password.png)
+![](../../actions/images/password.png)
 
 
 {% include "./readme-src/readme-config.md" %}
