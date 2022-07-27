@@ -17,9 +17,6 @@ The following are the parameter names and a description of the values needed to 
 
 | Initialization parameter | Display Name | Description | Example | 
 | :---: | :---: | --- | :---: | 
-| Provider | Provider Type | Vault integration type | {{ about.pam.providerType }} |
-| Instance Name | Name | Friendly Name for this vault configuration | {{ about.pam.name }} |
-| Cert Store Container | Certificate Store Container | {{ about.pam.certStoreContainer }} |
 | Path | KV Engine Path | The path to secrets in the Vault | By default this would be at `{{ about.pam.kvEnginePath }}` |
 | Token | Vault Token | The access token for the Vault | {{about.pam.vaultToken }} |
 | Host | Vault Host | The IP address or URL of the Vault instance, including any port number | {{ about.pam.vaultHost }}  |
@@ -46,12 +43,15 @@ After it is set up, you can now use your PAM Provider when configuring certifica
 ##### Installation
 In order to setup a new PAM Provider in the Keyfactor Platform for the first time, you will need to run [the SQL Installation Script](./add_PAMProvider.sql) against your Keyfactor application database.
 
-After the installation is run, the DLLs need to be installed to the correct location for the PAM Provider to function. From the release, the {{ pamRegDLL }} should be copied to the following folder locations in the Keyfactor installation. Once the DLL has been copied to these folders, edit the corresponding config file. You will need to add a new Unity entry as follows under `<container>`, next to other `<register>` tags.
+After the installation is run, the DLLs need to be installed to the correct location for the PAM Provider to function. From the release, the {{ about.pam.regDLL }}.dll should be copied to the following folder locations in the Keyfactor installation. Once the DLL has been copied to these folders, edit the corresponding config file. You will need to add a new Unity entry as follows under `<container>`, next to other `<register>` tags.
 
 When enabling a PAM provider for Orchestrators only, the first line for `WebAgentServices` is the only installation needed.
 
 The Keyfactor service and IIS Server should be restarted after making these changes.
 
+```xml
+<register type="IPAMProvider" mapTo="Keyfactor.Extensions.Pam.{{ about.pam.qualifiedName }}, {{ about.pam.RegDLL }}" name="{{ about.pam.dbName }}" />
+```
 {% include "./readme-src/readme-register.md" %}
 
 | Install Location | DLL Binary Folder | Config File |

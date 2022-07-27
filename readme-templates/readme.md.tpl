@@ -15,7 +15,7 @@
 
 {{ name }} {{ shared.support_statement[support_level] }}
 
-To report a problem or suggest a new feature, use the **[Issues](../../issues)** tab. If you want to contribute actual bug fixes or proposed enhancements, use the **[Pull requests](../../pulls)** tab.
+###### To report a problem or suggest a new feature, use the **[Issues](../../issues)** tab. If you want to contribute actual bug fixes or proposed enhancements, use the **[Pull requests](../../pulls)** tab.
 ___
 {% endif %}
 
@@ -23,7 +23,7 @@ ___
 {% if (integration_type == "orchestrator") and (about is defined) %}
 {% include "./actions/readme-templates/readme_platform_orchestrator.md" ignore missing %}
 {% endif %}
-{% if (integration_type == "pam") and (pamRegDLL is defined) %}
+{% if (integration_type == "pam") and (about is defined) %}
 {% include "./actions/readme-templates/readme_platform_pam.md" ignore missing %}
 {% endif %}
 ---
