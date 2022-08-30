@@ -44,8 +44,6 @@ The Keyfactor service and IIS Server should be restarted after making these chan
 <register type="IPAMProvider" mapTo="Keyfactor.Extensions.Pam.{{ about.pam.qualifiedName }}, {{ about.pam.regDLL }}" name="{{ about.pam.dbName }}" />
 ```
 
-{% include "./readme-src/readme-register.md" ignore missing %}
-
 | Install Location | DLL Binary Folder | Config File |
 | --- | --- | --- |
 | WebAgentServices | WebAgentServices\bin\ | WebAgentServices\web.config |
@@ -53,3 +51,4 @@ The Keyfactor service and IIS Server should be restarted after making these chan
 | KeyfactorAPI | KeyfactorAPI\bin\ | KeyfactorAPI\web.config |
 | WebConsole | WebConsole\bin\ | WebConsole\web.config |
 
+{% include "./readme-src/readme-register.md" ignore missing %}
