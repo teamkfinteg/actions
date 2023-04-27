@@ -75,18 +75,21 @@ jobs:
               repo: context.repo.repo,
               state: 'closed'
             });
-
-            // get the state of the latest pull request for this repo
-            const state = pulls.data[0].state;
-            const mergeSHA = pulls.data[0].merge_commit_sha;
-            const targetBranchName = pulls.data[0].base.ref;
+            if (pulls.data.length > 0) {
+              // get the state of the latest pull request for this repo
+              const state = pulls.data[0].state;
+              const mergeSHA = pulls.data[0].merge_commit_sha;
+              const targetBranchName = pulls.data[0].base.ref;
             
-            const IS_RELEASE = (state == 'closed') && (mergeSHA == context.sha) && (targetBranchName.startsWith('release-'));
+              const IS_RELEASE = (state == 'closed') && (mergeSHA == context.sha) && (targetBranchName.startsWith('release-'));
 
-            console.log(`State: ${state}`);
-            console.log(`mergeSHA: ${mergeSHA}`);
-            console.log(`pushSHA: ${context.sha}`);
-            console.log(`IS_RELEASE: ${IS_RELEASE}`);
+              console.log(`State: ${state}`);
+              console.log(`mergeSHA: ${mergeSHA}`);
+              console.log(`pushSHA: ${context.sha}`);
+              console.log(`IS_RELEASE: ${IS_RELEASE}`);
+            } else {
+              const IS_RELEASE = false;
+            }
 
             core.exportVariable('IS_RELEASE', `${IS_RELEASE}`);
 
